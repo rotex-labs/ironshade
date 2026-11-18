@@ -1,0 +1,11 @@
+flowchart LR
+    IR["Ironshade Graph IR"] --> S1["SPIR-V 1.3+ (Vulkan) - binary - M1"]
+    IR --> S2["WGSL (WebGPU / wgpu) - source - M1"]
+    IR --> S3["GLSL ES 3.00 (WebGL2) - source - M3"]
+    IR --> S4["HLSL SM5/SM6 source - source - M3"]
+    S4 -. "explicit bridge, opt-in" .-> B1["DXC -> DXIL (D3D12)"]
+    IR --> S5["DXBC SM4.0/4.1/5.0 (D3D10/11) - binary - M5"]
+    IR --> S6["D3D9 SM2/SM3 tokens - binary - M6"]
+    IR --> S7["DXIL SM6.x native (D3D12) - binary - M7"]
+    IR -. later .-> S8["MSL / Metal - source - after macOS lane exists"]
+    IR -. "third-party crate" .-> S9["custom target via ironshade-target HAL"]

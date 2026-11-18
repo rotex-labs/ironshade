@@ -1,0 +1,9 @@
+[package]
+name = "ironshade-driver"
+description = "Compilation sessions, incremental queries, and backend selection"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+publish.workspace = true

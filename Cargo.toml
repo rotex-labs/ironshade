@@ -1,0 +1,55 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/ironshade",
+    "crates/ironshade-base",
+    "crates/ironshade-syntax",
+    "crates/ironshade-sema",
+    "crates/ironshade-stdlib",
+    "crates/ironshade-ir",
+    "crates/ironshade-rewrite",
+    "crates/ironshade-passes",
+    "crates/ironshade-abi",
+    "crates/ironshade-caps",
+    "crates/ironshade-target",
+    "crates/ironshade-artifact",
+    "crates/ironshade-graph",
+    "crates/ironshade-driver",
+    "crates/ironshade-runtime",
+    "crates/ironshade-spirv",
+    "crates/ironshade-wgsl",
+    "crates/ironshade-glsl",
+    "crates/ironshade-hlsl",
+    "crates/ironshade-dxbc",
+    "crates/ironshade-d3d9",
+    "crates/ironshade-dxil",
+    "crates/ironshade-bridge-dxc",
+    "tools/ironshade-difftest",
+    "tools/ironshade-conformance",
+    "tools/ironshade-reduce",
+    "xtask",
+    "examples/external-backend",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.90"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/rotex-labs/ironshade"
+publish = false
+
+[workspace.dependencies]
+ironshade-bridge-dxc = { version = "0.1.0", path = "crates/ironshade-bridge-dxc" }
+ironshade-d3d9 = { version = "0.1.0", path = "crates/ironshade-d3d9" }
+ironshade-dxbc = { version = "0.1.0", path = "crates/ironshade-dxbc" }
+ironshade-dxil = { version = "0.1.0", path = "crates/ironshade-dxil" }
+ironshade-glsl = { version = "0.1.0", path = "crates/ironshade-glsl" }
+ironshade-graph = { version = "0.1.0", path = "crates/ironshade-graph" }
+ironshade-hlsl = { version = "0.1.0", path = "crates/ironshade-hlsl" }
+ironshade-runtime = { version = "0.1.0", path = "crates/ironshade-runtime" }
+ironshade-spirv = { version = "0.1.0", path = "crates/ironshade-spirv" }
+ironshade-target = { version = "0.1.0", path = "crates/ironshade-target" }
+ironshade-wgsl = { version = "0.1.0", path = "crates/ironshade-wgsl" }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"

@@ -1,0 +1,9 @@
+[package]
+name = "ironshade-base"
+description = "Source spans, diagnostics, interning, and other shared compiler primitives"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+publish.workspace = true

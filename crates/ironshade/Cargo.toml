@@ -1,0 +1,40 @@
+[package]
+name = "ironshade"
+description = "Umbrella library and command-line entry point for Ironshade"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+publish.workspace = true
+readme = "../../README.md"
+
+[[bin]]
+name = "ironshadec"
+path = "src/bin/ironshadec.rs"
+
+[features]
+default = ["spirv", "wgsl"]
+spirv = ["dep:ironshade-spirv"]
+wgsl = ["dep:ironshade-wgsl"]
+glsl = ["dep:ironshade-glsl"]
+hlsl = ["dep:ironshade-hlsl"]
+dxbc = ["dep:ironshade-dxbc"]
+d3d9 = ["dep:ironshade-d3d9"]
+dxil = ["dep:ironshade-dxil"]
+bridge-dxc = ["dep:ironshade-bridge-dxc", "hlsl"]
+graph = ["dep:ironshade-graph"]
+runtime = ["dep:ironshade-runtime", "graph"]
+all-targets = ["spirv", "wgsl", "glsl", "hlsl", "dxbc", "d3d9", "dxil"]
+
+[dependencies]
+ironshade-bridge-dxc = { workspace = true, optional = true }
+ironshade-d3d9 = { workspace = true, optional = true }
+ironshade-dxbc = { workspace = true, optional = true }
+ironshade-dxil = { workspace = true, optional = true }
+ironshade-glsl = { workspace = true, optional = true }
+ironshade-graph = { workspace = true, optional = true }
+ironshade-hlsl = { workspace = true, optional = true }
+ironshade-runtime = { workspace = true, optional = true }
+ironshade-spirv = { workspace = true, optional = true }
+ironshade-wgsl = { workspace = true, optional = true }

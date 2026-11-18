@@ -1,0 +1,9 @@
+[package]
+name = "ironshade-d3d9"
+description = "Shader Model 2 and 3 token-stream backend for Direct3D 9"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+publish.workspace = true

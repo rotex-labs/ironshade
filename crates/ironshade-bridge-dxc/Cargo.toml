@@ -1,0 +1,9 @@
+[package]
+name = "ironshade-bridge-dxc"
+description = "Explicit DXIL bridge through an external DXC executable"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+publish.workspace = true

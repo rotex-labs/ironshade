@@ -1,0 +1,14 @@
+flowchart TB
+    CORPUS["Corpus: Rotex fixtures + imported Slang tests (license-audited) + fuzz repros"] --> RUN
+    RUN["ironshade-difftest runner"] --> SC["slangc 2026.21 (pinned, checksum)"]
+    RUN --> AG["ironshadec (same flags, same target)"]
+    SC --> SREF["-reflection-json + SPIR-V/WGSL/GLSL/HLSL output"]
+    AG --> AREF["ironshade reflection JSON + output"]
+    SREF --> NORM["normalize to common schema"]
+    AREF --> NORM
+    NORM --> CMP["compare: entry points, stages, bindings, set/space, offsets, sizes, strides, workgroup size, varyings, diagnostics class"]
+    AG --> VALID["validators: spirv-val --target-env, naga/tint (WGSL), glslang (ESSL 300), dxc -val / fxc (Windows job)"]
+    SC --> VALID
+    CMP --> RES["per-test verdict: match / expected-diff / mismatch / ironshade-unsupported / slang-fail"]
+    VALID --> RES
+    RES --> DASH["coverage dashboard: % of oracle tests passing by feature area"]

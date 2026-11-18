@@ -1,0 +1,5 @@
+[alias]
+xtask = "run --locked --quiet --package xtask --"
+
+[resolver]
+incompatible-rust-versions = "fallback"

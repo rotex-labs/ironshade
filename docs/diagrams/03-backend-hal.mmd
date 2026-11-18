@@ -1,0 +1,14 @@
+flowchart TB
+    REQ["CompileRequest (module, entry points, TargetId, profile, policy)"] --> REG{"static backend or registry lookup"}
+    REG --> T["impl Target (monomorphized)"]
+    REG -. dyn .-> DT["Box&lt;dyn DynTarget&gt; (plugin registry)"]
+    T --> CAPS["Target::capabilities(profile) -> CapabilityTable"]
+    DT --> CAPS
+    CAPS --> PLAN["Planner: Native / Lowered / Emulated / Unsupported / Unknown per requirement"]
+    PLAN -->|any Unsupported or Unknown| DIAG["Diagnostic with origin + alternatives; no artifact"]
+    PLAN -->|executable plan| LEGAL["Shared legalization passes selected by plan"]
+    LEGAL --> TLEG["Target::legalizer() target-specific passes"]
+    TLEG --> ABI["Target::plan_abi() physical bindings + layouts"]
+    ABI --> EM["Target::Emitter (SourceEmitter or BinaryEmitter)"]
+    EM --> AW["ArtifactWriter: payload + reflection + residual requirements"]
+    AW --> CHK["Target::self_check() + optional external validator"]

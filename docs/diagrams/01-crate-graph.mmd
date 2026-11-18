@@ -1,0 +1,65 @@
+flowchart TB
+    subgraph Tools["Tools (not depended on by libraries)"]
+        CLI["ironshade (umbrella) + ironshadec (CLI)"]
+        XT["xtask"]
+        DIFF["ironshade-difftest"]
+        CONF["ironshade-conformance"]
+    end
+    subgraph Front["Frontends"]
+        SYN["ironshade-syntax"]
+        SEM["ironshade-sema"]
+        GRAPH["ironshade-graph"]
+    end
+    subgraph Middle["Middle end"]
+        IR["ironshade-ir (graph IR + verifier)"]
+        RW["ironshade-rewrite (patterns, automata, e-graph)"]
+        PASS["ironshade-passes"]
+        ABI["ironshade-abi"]
+    end
+    subgraph HAL["Backend HAL"]
+        CAPS["ironshade-caps"]
+        THAL["ironshade-target (HAL traits)"]
+        ART["ironshade-artifact (artifact + reflection)"]
+    end
+    subgraph Backends["Backends (feature-gated)"]
+        SPV["ironshade-spirv"]
+        WGSL["ironshade-wgsl"]
+        GLSL["ironshade-glsl"]
+        HLSL["ironshade-hlsl"]
+        DXBC["ironshade-dxbc"]
+        D3D9["ironshade-d3d9"]
+        DXIL["ironshade-dxil"]
+        BR["ironshade-bridge-dxc (optional)"]
+        EXT["third-party: acme-ironshade-target"]
+    end
+    subgraph Run["Runtime"]
+        DRV["ironshade-driver (session, cache, query)"]
+        RT["ironshade-runtime (live compile jobs)"]
+    end
+    BASE["ironshade-base (spans, diagnostics, interner, arenas)"]
+
+    CLI --> DRV
+    DIFF --> DRV
+    CONF --> DIFF
+    RT --> DRV
+    DRV --> SEM
+    DRV --> GRAPH
+    DRV --> PASS
+    DRV --> THAL
+    DRV -. features .-> SPV & WGSL & GLSL & HLSL & DXBC & D3D9 & DXIL & BR
+    SEM --> SYN
+    SEM --> IR
+    GRAPH --> IR
+    PASS --> RW
+    PASS --> IR
+    RW --> IR
+    ABI --> IR
+    ABI --> CAPS
+    THAL --> IR
+    THAL --> CAPS
+    THAL --> ABI
+    THAL --> ART
+    THAL --> PASS
+    SPV & WGSL & GLSL & HLSL & DXBC & D3D9 & DXIL & EXT --> THAL
+    BR --> HLSL
+    SYN & IR & CAPS & ART --> BASE

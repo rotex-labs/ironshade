@@ -1,0 +1,9 @@
+[package]
+name = "ironshade-hlsl"
+description = "HLSL source backend for Direct3D"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+publish.workspace = true

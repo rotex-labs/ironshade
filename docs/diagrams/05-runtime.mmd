@@ -1,0 +1,17 @@
+sequenceDiagram
+    participant Ed as Live editor (lighting graph)
+    participant Q as ironshade-runtime scheduler
+    participant W as Compile worker
+    participant H as Host adapter (rotex-shader)
+    participant R as Render thread
+    Ed->>Q: edit(snapshot, generation=g, device_epoch=e)
+    Q->>Q: debounce, dedupe by content hash, cancel older generations
+    Q->>W: compile(snapshot, target contract)
+    W-->>Q: Artifact or node-mapped diagnostics
+    Q->>Q: drop if generation < latest or epoch changed
+    Q->>H: prepare(artifact, ABI diff vs active)
+    H-->>Q: candidate pipeline + bindings, or failure
+    Q->>R: enqueue commit(g)
+    R->>R: swap material handle at frame boundary
+    R->>H: retire old pipeline after GPU fence
+    Note over Q,R: any failure keeps the last good pipeline active

@@ -1,0 +1,16 @@
+flowchart TB
+    SRC["Slang-subset text"] --> LEX["lex + preprocess"] --> PARSE["parse (lossless CST -> AST)"]
+    PARSE --> SEMA["resolve + type-check (HIR)"]
+    SEMA --> SPEC["specialize generics / variants"]
+    VG["visual shader graph asset"] --> GCHK["graph schema + type/stage check"]
+    RB["typed Rust graph builder"] --> GCHK
+    SPEC --> IGIR["Ironshade Graph IR (RVSDG-style regions)"]
+    GCHK --> IGIR
+    IGIR --> VER["verify"]
+    VER --> OPT["target-neutral rewrites (pattern automata, bounded e-graph)"]
+    OPT --> PLAN["capability plan (caps x requirements x policy)"]
+    PLAN --> LEG["legalize: shared passes chosen by plan"]
+    LEG --> LOW["target lowering (backend HAL)"]
+    LOW --> EMIT["emit text or binary"]
+    EMIT --> VAL["external validator (CI) / self-check"]
+    VAL --> ART["Artifact = payload + reflection + requirements"]

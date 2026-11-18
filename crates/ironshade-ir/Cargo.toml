@@ -1,0 +1,9 @@
+[package]
+name = "ironshade-ir"
+description = "Ironshade Graph IR, its builder and verifier, and its textual form"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+publish.workspace = true

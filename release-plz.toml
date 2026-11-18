@@ -1,0 +1,104 @@
+[workspace]
+release = false
+changelog_update = true
+git_release_enable = true
+git_tag_enable = true
+git_tag_name = "{{ package }}-v{{ version }}"
+semver_check = false
+pr_labels = ["release"]
+
+[[package]]
+name = "ironshade"
+version_group = "ironshade"
+semver_check = true
+
+[[package]]
+name = "ironshade-base"
+version_group = "ironshade"
+
+[[package]]
+name = "ironshade-syntax"
+version_group = "ironshade"
+
+[[package]]
+name = "ironshade-sema"
+version_group = "ironshade"
+
+[[package]]
+name = "ironshade-stdlib"
+version_group = "ironshade"
+
+[[package]]
+name = "ironshade-ir"
+version_group = "ironshade"
+
+[[package]]
+name = "ironshade-rewrite"
+version_group = "ironshade"
+
+[[package]]
+name = "ironshade-passes"
+version_group = "ironshade"
+
+[[package]]
+name = "ironshade-abi"
+version_group = "ironshade"
+
+[[package]]
+name = "ironshade-caps"
+version_group = "ironshade"
+semver_check = true
+
+[[package]]
+name = "ironshade-target"
+version_group = "ironshade"
+semver_check = true
+
+[[package]]
+name = "ironshade-artifact"
+version_group = "ironshade"
+semver_check = true
+
+[[package]]
+name = "ironshade-graph"
+version_group = "ironshade"
+
+[[package]]
+name = "ironshade-driver"
+version_group = "ironshade"
+
+[[package]]
+name = "ironshade-runtime"
+version_group = "ironshade"
+
+[[package]]
+name = "ironshade-spirv"
+version_group = "ironshade"
+
+[[package]]
+name = "ironshade-wgsl"
+version_group = "ironshade"
+
+[[package]]
+name = "ironshade-glsl"
+version_group = "ironshade"
+
+[[package]]
+name = "ironshade-hlsl"
+version_group = "ironshade"
+
+[[package]]
+name = "ironshade-dxbc"
+version_group = "ironshade"
+
+[[package]]
+name = "ironshade-d3d9"
+version_group = "ironshade"
+
+[[package]]
+name = "ironshade-dxil"
+version_group = "ironshade"
+
+[[package]]
+name = "ironshade-bridge-dxc"
+version_group = "ironshade"

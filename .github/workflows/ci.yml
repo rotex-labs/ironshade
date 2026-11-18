@@ -1,0 +1,85 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+env:
+  CARGO_TERM_COLOR: always
+  CARGO_INCREMENTAL: "0"
+
+jobs:
+  native:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: "1.99.1"
+          components: rustfmt, clippy
+      - uses: Swatinem/rust-cache@v2
+
+      - name: Build with default features
+        run: cargo build --locked --workspace
+
+      - name: Test with all features
+        run: cargo test --locked --workspace --all-features
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: "1.99.1"
+          components: rustfmt, clippy
+          targets: wasm32-unknown-unknown
+      - uses: Swatinem/rust-cache@v2
+
+      - name: Check formatting
+        run: cargo fmt --all -- --check
+
+      - name: Clippy
+        run: cargo clippy --locked --workspace --all-targets --all-features -- -D warnings
+
+      - name: Rustdoc
+        env:
+          RUSTDOCFLAGS: "-D missing_docs -D rustdoc::broken_intra_doc_links"
+        run: cargo doc --locked --workspace --no-deps --all-features
+
+      - name: Check the umbrella without default features
+        run: cargo check --locked -p ironshade --no-default-features
+
+      - name: Build WebAssembly libraries
+        run: |
+          cargo build --locked --target wasm32-unknown-unknown -p ironshade --no-default-features --lib
+          cargo build --locked --target wasm32-unknown-unknown -p ironshade-runtime
+
+      - name: Check dependency layering
+        run: cargo xtask check-layering
+
+      - name: Install cargo-deny
+        uses: taiki-e/install-action@v2
+        with:
+          tool: cargo-deny@0.20.2
+
+      - name: Audit dependencies
+        run: cargo deny --locked --all-features check
+
+  msrv:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: "1.90.0"
+      - name: Check Rust 1.90.0
+        run: cargo +1.90.0 check --locked --workspace --all-targets --all-features

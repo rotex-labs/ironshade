@@ -1,0 +1,19 @@
+flowchart LR
+    subgraph IronshadeRepo["rotex-labs/ironshade (engine-neutral)"]
+        AGC["ironshade / ironshade-driver"]
+        AART["ironshade-artifact (reflection + caps)"]
+        ART2["ironshade-runtime"]
+    end
+    subgraph RotexDev["rotex-dev (umbrella, submodules + path patches)"]
+        RS["rotex-shader (adapter)"]
+        RSS["rotex-shader-slang (slangc path, kept during migration)"]
+        RC["rotex-core / rotex-types (RHI HAL)"]
+        BK["rotex-vulkan / rotex-wgpu / rotex-gl / rotex-d3d12"]
+    end
+    RS --> AGC
+    RS --> AART
+    RS --> ART2
+    RS --> RC
+    RSS --> RC
+    BK --> RC
+    AART -. "never depends on" .-x RC
