@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="300" viewBox="0 0 1200 300" role="img" aria-labelledby="title">
+  <title id="title">Ironshade</title>
+  <defs>
+    <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M32 0H0V32" fill="none" stroke="#294056"/>
+    </pattern>
+  </defs>
+  <path fill="#0b1320" d="M0 0h1200v300H0z"/>
+  <path fill="#142539" d="M875 0h325v300H681z"/>
+  <path fill="url(#grid)" d="M875 0h325v300H681z"/>
+  <path fill="none" stroke="#294056" stroke-width="2" d="M875 0 681 300M907 0 713 300"/>
+  <path d="M995 46h106l-62 96h-106zM931 152h106l-62 96H869z" fill="#0b1320" stroke="#81a7c1" stroke-width="2"/>
+  <path d="M1009 62h60l-41 63h-60zM945 168h60l-41 63h-60z" fill="#81a7c1" opacity=".35"/>
+  <path d="m1039 142-12 19h-59m-35-19-12 19h-30" fill="none" stroke="#81a7c1" stroke-width="2"/>
+  <path d="M82 78h65" stroke="#81a7c1" stroke-width="4"/>
+  <text x="76" y="174" fill="#eef6fc" font-family="Arial, Helvetica, sans-serif" font-size="84" font-weight="800" letter-spacing="5">IRONSHADE</text>
+  <text x="82" y="221" fill="#81a7c1" font-family="Arial, Helvetica, sans-serif" font-size="23" letter-spacing="4">RUST SHADER COMPILER</text>
+</svg>
