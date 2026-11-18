@@ -1,8 +1,13 @@
 Ironshade
 Copyright (c) 2026 rotex-labs
 
-The Slang compiler test suite and Rotex shader fixtures are planned inputs
-to the test harness. Record upstream license and attribution information here
-when those inputs are imported.
+Nova shader fixtures in tests/fixtures/rotex/ are reproduced unchanged from
+rotex-labs/rotex-examples at 654bef61ea3a22d516e2ad6a6a249346d14afdd4.
+Copyright (c) 2026 rotex-labs. See tests/fixtures/rotex/LICENSE-MIT.
+
+The Slang compiler test suite is referenced as an unmodified submodule at
+shader-slang/slang v2026.21 (e73d268973dae1a2af701277b27c2fddef98a274).
+See conformance/slang-tests/LICENSE (Apache-2.0 WITH LLVM-exception) and
+conformance/slang-tests/tests/fcpw/LICENSE (MIT, Copyright 2020 Rohan Sawhney).
 
 Slang™ and the Slang logo are trademarks of the Khronos Group Inc.

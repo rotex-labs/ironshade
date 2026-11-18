@@ -1,0 +1,236 @@
+{
+  "slangc_version": "2026.21",
+  "source": "nova_live.slang",
+  "entry": "vertexMain",
+  "target": "wgsl",
+  "flags": [
+    "-matrix-layout-column-major",
+    "-fvk-use-entrypoint-name",
+    "-fvk-use-gl-layout",
+    "-O2",
+    "-DROTEX_WGSL=1"
+  ],
+  "spirv_version": null,
+  "wgsl_uses_immediates": false,
+  "validation": {
+    "tool": "naga",
+    "accepted": true
+  },
+  "reflection": {
+    "schema_version": 0,
+    "entry_points": [
+      {
+        "name": "vertexMain",
+        "stage": "vertex",
+        "workgroup_size": null,
+        "inputs": [
+          {
+            "name": "uv",
+            "location": 0,
+            "semantic": "TEXCOORD",
+            "semantic_index": null,
+            "builtin": null,
+            "interpolation": null,
+            "ty": {
+              "kind": "vector",
+              "name": null,
+              "scalar": null,
+              "element_count": 2,
+              "rows": null,
+              "columns": null,
+              "matrix_layout": null,
+              "sizes": [
+                {
+                  "class": "varyingInput",
+                  "size": 1,
+                  "alignment": null
+                }
+              ],
+              "element": {
+                "kind": "scalar",
+                "name": null,
+                "scalar": "float32",
+                "element_count": null,
+                "rows": null,
+                "columns": null,
+                "matrix_layout": null,
+                "sizes": [],
+                "element": null,
+                "fields": []
+              },
+              "fields": []
+            }
+          }
+        ],
+        "outputs": [
+          {
+            "name": "result.position",
+            "location": null,
+            "semantic": "SV_POSITION",
+            "semantic_index": null,
+            "builtin": "position",
+            "interpolation": null,
+            "ty": {
+              "kind": "vector",
+              "name": null,
+              "scalar": null,
+              "element_count": 4,
+              "rows": null,
+              "columns": null,
+              "matrix_layout": null,
+              "sizes": [],
+              "element": {
+                "kind": "scalar",
+                "name": null,
+                "scalar": "float32",
+                "element_count": null,
+                "rows": null,
+                "columns": null,
+                "matrix_layout": null,
+                "sizes": [],
+                "element": null,
+                "fields": []
+              },
+              "fields": []
+            }
+          },
+          {
+            "name": "result.uv",
+            "location": 0,
+            "semantic": "TEXCOORD",
+            "semantic_index": null,
+            "builtin": null,
+            "interpolation": null,
+            "ty": {
+              "kind": "vector",
+              "name": null,
+              "scalar": null,
+              "element_count": 2,
+              "rows": null,
+              "columns": null,
+              "matrix_layout": null,
+              "sizes": [
+                {
+                  "class": "varyingOutput",
+                  "size": 1,
+                  "alignment": null
+                }
+              ],
+              "element": {
+                "kind": "scalar",
+                "name": null,
+                "scalar": "float32",
+                "element_count": null,
+                "rows": null,
+                "columns": null,
+                "matrix_layout": null,
+                "sizes": [],
+                "element": null,
+                "fields": []
+              },
+              "fields": []
+            }
+          }
+        ],
+        "live_bindings": [
+          {
+            "name": "liveTex",
+            "used": false
+          },
+          {
+            "name": "liveSamp",
+            "used": false
+          }
+        ]
+      }
+    ],
+    "declared_bindings": [
+      {
+        "name": "liveTex",
+        "kind": "texture2D",
+        "access": null,
+        "array_size": null,
+        "logical": {
+          "class": "descriptorTableSlot",
+          "space": null,
+          "index": 0
+        },
+        "physical": null,
+        "ty": {
+          "kind": "resource",
+          "name": null,
+          "scalar": null,
+          "element_count": null,
+          "rows": null,
+          "columns": null,
+          "matrix_layout": null,
+          "sizes": [
+            {
+              "class": "descriptorTableSlot",
+              "size": 1,
+              "alignment": null
+            }
+          ],
+          "element": {
+            "kind": "vector",
+            "name": null,
+            "scalar": null,
+            "element_count": 4,
+            "rows": null,
+            "columns": null,
+            "matrix_layout": null,
+            "sizes": [],
+            "element": {
+              "kind": "scalar",
+              "name": null,
+              "scalar": "float32",
+              "element_count": null,
+              "rows": null,
+              "columns": null,
+              "matrix_layout": null,
+              "sizes": [],
+              "element": null,
+              "fields": []
+            },
+            "fields": []
+          },
+          "fields": []
+        }
+      },
+      {
+        "name": "liveSamp",
+        "kind": "samplerState",
+        "access": null,
+        "array_size": null,
+        "logical": {
+          "class": "descriptorTableSlot",
+          "space": null,
+          "index": 1
+        },
+        "physical": null,
+        "ty": {
+          "kind": "samplerState",
+          "name": null,
+          "scalar": null,
+          "element_count": null,
+          "rows": null,
+          "columns": null,
+          "matrix_layout": null,
+          "sizes": [
+            {
+              "class": "descriptorTableSlot",
+              "size": 1,
+              "alignment": null
+            }
+          ],
+          "element": null,
+          "fields": []
+        }
+      }
+    ],
+    "blocks": [],
+    "specialization_constants": [],
+    "remaps": [],
+    "capability_report": []
+  }
+}

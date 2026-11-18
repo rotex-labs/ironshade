@@ -40,16 +40,25 @@ repository = "https://github.com/rotex-labs/ironshade"
 publish = false
 
 [workspace.dependencies]
+ironshade-artifact = { version = "0.1.0", path = "crates/ironshade-artifact" }
+ironshade-base = { version = "0.1.0", path = "crates/ironshade-base" }
 ironshade-bridge-dxc = { version = "0.1.0", path = "crates/ironshade-bridge-dxc" }
+ironshade-caps = { version = "0.1.0", path = "crates/ironshade-caps" }
+ironshade-conformance = { version = "0.1.0", path = "tools/ironshade-conformance" }
 ironshade-d3d9 = { version = "0.1.0", path = "crates/ironshade-d3d9" }
+ironshade-difftest = { version = "0.1.0", path = "tools/ironshade-difftest" }
 ironshade-dxbc = { version = "0.1.0", path = "crates/ironshade-dxbc" }
 ironshade-dxil = { version = "0.1.0", path = "crates/ironshade-dxil" }
 ironshade-glsl = { version = "0.1.0", path = "crates/ironshade-glsl" }
 ironshade-graph = { version = "0.1.0", path = "crates/ironshade-graph" }
 ironshade-hlsl = { version = "0.1.0", path = "crates/ironshade-hlsl" }
+ironshade-ir = { version = "0.1.0", path = "crates/ironshade-ir" }
+ironshade-passes = { version = "0.1.0", path = "crates/ironshade-passes" }
 ironshade-runtime = { version = "0.1.0", path = "crates/ironshade-runtime" }
 ironshade-spirv = { version = "0.1.0", path = "crates/ironshade-spirv" }
 ironshade-target = { version = "0.1.0", path = "crates/ironshade-target" }
 ironshade-wgsl = { version = "0.1.0", path = "crates/ironshade-wgsl" }
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
+sha2 = "0.10"
+toml = { version = "1", default-features = false, features = ["std", "serde", "parse"] }

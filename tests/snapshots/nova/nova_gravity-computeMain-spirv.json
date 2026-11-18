@@ -1,0 +1,1324 @@
+{
+  "slangc_version": "2026.21",
+  "source": "nova_gravity.slang",
+  "entry": "computeMain",
+  "target": "spirv",
+  "flags": [
+    "-matrix-layout-column-major",
+    "-fvk-use-entrypoint-name",
+    "-fvk-use-gl-layout",
+    "-O2",
+    "-profile",
+    "spirv_1_0"
+  ],
+  "spirv_version": "1.0",
+  "wgsl_uses_immediates": null,
+  "validation": {
+    "tool": "spirv-val",
+    "accepted": true
+  },
+  "reflection": {
+    "schema_version": 0,
+    "entry_points": [
+      {
+        "name": "computeMain",
+        "stage": "compute",
+        "workgroup_size": [
+          256,
+          1,
+          1
+        ],
+        "inputs": [
+          {
+            "name": "dispatch_id",
+            "location": null,
+            "semantic": "SV_DISPATCHTHREADID",
+            "semantic_index": null,
+            "builtin": "global_invocation_id",
+            "interpolation": null,
+            "ty": {
+              "kind": "vector",
+              "name": null,
+              "scalar": null,
+              "element_count": 3,
+              "rows": null,
+              "columns": null,
+              "matrix_layout": null,
+              "sizes": [],
+              "element": {
+                "kind": "scalar",
+                "name": null,
+                "scalar": "uint32",
+                "element_count": null,
+                "rows": null,
+                "columns": null,
+                "matrix_layout": null,
+                "sizes": [],
+                "element": null,
+                "fields": []
+              },
+              "fields": []
+            }
+          }
+        ],
+        "outputs": [],
+        "live_bindings": [
+          {
+            "name": "pc",
+            "used": null
+          },
+          {
+            "name": "inp",
+            "used": true
+          },
+          {
+            "name": "outp",
+            "used": true
+          },
+          {
+            "name": "wells",
+            "used": true
+          }
+        ]
+      }
+    ],
+    "declared_bindings": [
+      {
+        "name": "pc",
+        "kind": "constantBuffer",
+        "access": null,
+        "array_size": null,
+        "logical": {
+          "class": "pushConstantBuffer",
+          "space": null,
+          "index": 0
+        },
+        "physical": null,
+        "ty": {
+          "kind": "constantBuffer",
+          "name": null,
+          "scalar": null,
+          "element_count": null,
+          "rows": null,
+          "columns": null,
+          "matrix_layout": null,
+          "sizes": [
+            {
+              "class": "pushConstantBuffer",
+              "size": 1,
+              "alignment": null
+            }
+          ],
+          "element": {
+            "kind": "struct",
+            "name": "SimPush",
+            "scalar": null,
+            "element_count": null,
+            "rows": null,
+            "columns": null,
+            "matrix_layout": null,
+            "sizes": [
+              {
+                "class": "uniform",
+                "size": 64,
+                "alignment": 4
+              }
+            ],
+            "element": null,
+            "fields": [
+              {
+                "name": "dt",
+                "offset": 0,
+                "size": 4,
+                "stride": 0,
+                "ty": {
+                  "kind": "scalar",
+                  "name": null,
+                  "scalar": "float32",
+                  "element_count": null,
+                  "rows": null,
+                  "columns": null,
+                  "matrix_layout": null,
+                  "sizes": [
+                    {
+                      "class": "uniform",
+                      "size": 4,
+                      "alignment": 4
+                    }
+                  ],
+                  "element": null,
+                  "fields": []
+                }
+              },
+              {
+                "name": "gravityStrength",
+                "offset": 4,
+                "size": 4,
+                "stride": 0,
+                "ty": {
+                  "kind": "scalar",
+                  "name": null,
+                  "scalar": "float32",
+                  "element_count": null,
+                  "rows": null,
+                  "columns": null,
+                  "matrix_layout": null,
+                  "sizes": [
+                    {
+                      "class": "uniform",
+                      "size": 4,
+                      "alignment": 4
+                    }
+                  ],
+                  "element": null,
+                  "fields": []
+                }
+              },
+              {
+                "name": "damping",
+                "offset": 8,
+                "size": 4,
+                "stride": 0,
+                "ty": {
+                  "kind": "scalar",
+                  "name": null,
+                  "scalar": "float32",
+                  "element_count": null,
+                  "rows": null,
+                  "columns": null,
+                  "matrix_layout": null,
+                  "sizes": [
+                    {
+                      "class": "uniform",
+                      "size": 4,
+                      "alignment": 4
+                    }
+                  ],
+                  "element": null,
+                  "fields": []
+                }
+              },
+              {
+                "name": "particleCount",
+                "offset": 12,
+                "size": 4,
+                "stride": 0,
+                "ty": {
+                  "kind": "scalar",
+                  "name": null,
+                  "scalar": "uint32",
+                  "element_count": null,
+                  "rows": null,
+                  "columns": null,
+                  "matrix_layout": null,
+                  "sizes": [
+                    {
+                      "class": "uniform",
+                      "size": 4,
+                      "alignment": 4
+                    }
+                  ],
+                  "element": null,
+                  "fields": []
+                }
+              },
+              {
+                "name": "wellCount",
+                "offset": 16,
+                "size": 4,
+                "stride": 0,
+                "ty": {
+                  "kind": "scalar",
+                  "name": null,
+                  "scalar": "uint32",
+                  "element_count": null,
+                  "rows": null,
+                  "columns": null,
+                  "matrix_layout": null,
+                  "sizes": [
+                    {
+                      "class": "uniform",
+                      "size": 4,
+                      "alignment": 4
+                    }
+                  ],
+                  "element": null,
+                  "fields": []
+                }
+              },
+              {
+                "name": "bass",
+                "offset": 20,
+                "size": 4,
+                "stride": 0,
+                "ty": {
+                  "kind": "scalar",
+                  "name": null,
+                  "scalar": "float32",
+                  "element_count": null,
+                  "rows": null,
+                  "columns": null,
+                  "matrix_layout": null,
+                  "sizes": [
+                    {
+                      "class": "uniform",
+                      "size": 4,
+                      "alignment": 4
+                    }
+                  ],
+                  "element": null,
+                  "fields": []
+                }
+              },
+              {
+                "name": "mid",
+                "offset": 24,
+                "size": 4,
+                "stride": 0,
+                "ty": {
+                  "kind": "scalar",
+                  "name": null,
+                  "scalar": "float32",
+                  "element_count": null,
+                  "rows": null,
+                  "columns": null,
+                  "matrix_layout": null,
+                  "sizes": [
+                    {
+                      "class": "uniform",
+                      "size": 4,
+                      "alignment": 4
+                    }
+                  ],
+                  "element": null,
+                  "fields": []
+                }
+              },
+              {
+                "name": "treble",
+                "offset": 28,
+                "size": 4,
+                "stride": 0,
+                "ty": {
+                  "kind": "scalar",
+                  "name": null,
+                  "scalar": "float32",
+                  "element_count": null,
+                  "rows": null,
+                  "columns": null,
+                  "matrix_layout": null,
+                  "sizes": [
+                    {
+                      "class": "uniform",
+                      "size": 4,
+                      "alignment": 4
+                    }
+                  ],
+                  "element": null,
+                  "fields": []
+                }
+              },
+              {
+                "name": "boidSeparation",
+                "offset": 32,
+                "size": 4,
+                "stride": 0,
+                "ty": {
+                  "kind": "scalar",
+                  "name": null,
+                  "scalar": "float32",
+                  "element_count": null,
+                  "rows": null,
+                  "columns": null,
+                  "matrix_layout": null,
+                  "sizes": [
+                    {
+                      "class": "uniform",
+                      "size": 4,
+                      "alignment": 4
+                    }
+                  ],
+                  "element": null,
+                  "fields": []
+                }
+              },
+              {
+                "name": "boidAlignment",
+                "offset": 36,
+                "size": 4,
+                "stride": 0,
+                "ty": {
+                  "kind": "scalar",
+                  "name": null,
+                  "scalar": "float32",
+                  "element_count": null,
+                  "rows": null,
+                  "columns": null,
+                  "matrix_layout": null,
+                  "sizes": [
+                    {
+                      "class": "uniform",
+                      "size": 4,
+                      "alignment": 4
+                    }
+                  ],
+                  "element": null,
+                  "fields": []
+                }
+              },
+              {
+                "name": "boidCohesion",
+                "offset": 40,
+                "size": 4,
+                "stride": 0,
+                "ty": {
+                  "kind": "scalar",
+                  "name": null,
+                  "scalar": "float32",
+                  "element_count": null,
+                  "rows": null,
+                  "columns": null,
+                  "matrix_layout": null,
+                  "sizes": [
+                    {
+                      "class": "uniform",
+                      "size": 4,
+                      "alignment": 4
+                    }
+                  ],
+                  "element": null,
+                  "fields": []
+                }
+              },
+              {
+                "name": "boidRadius",
+                "offset": 44,
+                "size": 4,
+                "stride": 0,
+                "ty": {
+                  "kind": "scalar",
+                  "name": null,
+                  "scalar": "float32",
+                  "element_count": null,
+                  "rows": null,
+                  "columns": null,
+                  "matrix_layout": null,
+                  "sizes": [
+                    {
+                      "class": "uniform",
+                      "size": 4,
+                      "alignment": 4
+                    }
+                  ],
+                  "element": null,
+                  "fields": []
+                }
+              },
+              {
+                "name": "maxSpeed",
+                "offset": 48,
+                "size": 4,
+                "stride": 0,
+                "ty": {
+                  "kind": "scalar",
+                  "name": null,
+                  "scalar": "float32",
+                  "element_count": null,
+                  "rows": null,
+                  "columns": null,
+                  "matrix_layout": null,
+                  "sizes": [
+                    {
+                      "class": "uniform",
+                      "size": 4,
+                      "alignment": 4
+                    }
+                  ],
+                  "element": null,
+                  "fields": []
+                }
+              },
+              {
+                "name": "time",
+                "offset": 52,
+                "size": 4,
+                "stride": 0,
+                "ty": {
+                  "kind": "scalar",
+                  "name": null,
+                  "scalar": "float32",
+                  "element_count": null,
+                  "rows": null,
+                  "columns": null,
+                  "matrix_layout": null,
+                  "sizes": [
+                    {
+                      "class": "uniform",
+                      "size": 4,
+                      "alignment": 4
+                    }
+                  ],
+                  "element": null,
+                  "fields": []
+                }
+              },
+              {
+                "name": "gridDim",
+                "offset": 56,
+                "size": 4,
+                "stride": 0,
+                "ty": {
+                  "kind": "scalar",
+                  "name": null,
+                  "scalar": "float32",
+                  "element_count": null,
+                  "rows": null,
+                  "columns": null,
+                  "matrix_layout": null,
+                  "sizes": [
+                    {
+                      "class": "uniform",
+                      "size": 4,
+                      "alignment": 4
+                    }
+                  ],
+                  "element": null,
+                  "fields": []
+                }
+              },
+              {
+                "name": "boxHalf",
+                "offset": 60,
+                "size": 4,
+                "stride": 0,
+                "ty": {
+                  "kind": "scalar",
+                  "name": null,
+                  "scalar": "float32",
+                  "element_count": null,
+                  "rows": null,
+                  "columns": null,
+                  "matrix_layout": null,
+                  "sizes": [
+                    {
+                      "class": "uniform",
+                      "size": 4,
+                      "alignment": 4
+                    }
+                  ],
+                  "element": null,
+                  "fields": []
+                }
+              }
+            ]
+          },
+          "fields": []
+        }
+      },
+      {
+        "name": "inp",
+        "kind": "structuredBuffer",
+        "access": null,
+        "array_size": null,
+        "logical": {
+          "class": "descriptorTableSlot",
+          "space": null,
+          "index": 0
+        },
+        "physical": null,
+        "ty": {
+          "kind": "resource",
+          "name": null,
+          "scalar": null,
+          "element_count": null,
+          "rows": null,
+          "columns": null,
+          "matrix_layout": null,
+          "sizes": [
+            {
+              "class": "descriptorTableSlot",
+              "size": 1,
+              "alignment": null
+            }
+          ],
+          "element": {
+            "kind": "struct",
+            "name": "Particle",
+            "scalar": null,
+            "element_count": null,
+            "rows": null,
+            "columns": null,
+            "matrix_layout": null,
+            "sizes": [
+              {
+                "class": "uniform",
+                "size": 16,
+                "alignment": 8
+              }
+            ],
+            "element": null,
+            "fields": [
+              {
+                "name": "pos",
+                "offset": 0,
+                "size": 8,
+                "stride": 4,
+                "ty": {
+                  "kind": "vector",
+                  "name": null,
+                  "scalar": null,
+                  "element_count": 2,
+                  "rows": null,
+                  "columns": null,
+                  "matrix_layout": null,
+                  "sizes": [
+                    {
+                      "class": "uniform",
+                      "size": 8,
+                      "alignment": 8
+                    }
+                  ],
+                  "element": {
+                    "kind": "scalar",
+                    "name": null,
+                    "scalar": "float32",
+                    "element_count": null,
+                    "rows": null,
+                    "columns": null,
+                    "matrix_layout": null,
+                    "sizes": [],
+                    "element": null,
+                    "fields": []
+                  },
+                  "fields": []
+                }
+              },
+              {
+                "name": "vel",
+                "offset": 8,
+                "size": 8,
+                "stride": 4,
+                "ty": {
+                  "kind": "vector",
+                  "name": null,
+                  "scalar": null,
+                  "element_count": 2,
+                  "rows": null,
+                  "columns": null,
+                  "matrix_layout": null,
+                  "sizes": [
+                    {
+                      "class": "uniform",
+                      "size": 8,
+                      "alignment": 8
+                    }
+                  ],
+                  "element": {
+                    "kind": "scalar",
+                    "name": null,
+                    "scalar": "float32",
+                    "element_count": null,
+                    "rows": null,
+                    "columns": null,
+                    "matrix_layout": null,
+                    "sizes": [],
+                    "element": null,
+                    "fields": []
+                  },
+                  "fields": []
+                }
+              }
+            ]
+          },
+          "fields": []
+        }
+      },
+      {
+        "name": "outp",
+        "kind": "structuredBuffer",
+        "access": "readWrite",
+        "array_size": null,
+        "logical": {
+          "class": "descriptorTableSlot",
+          "space": null,
+          "index": 1
+        },
+        "physical": null,
+        "ty": {
+          "kind": "resource",
+          "name": null,
+          "scalar": null,
+          "element_count": null,
+          "rows": null,
+          "columns": null,
+          "matrix_layout": null,
+          "sizes": [
+            {
+              "class": "descriptorTableSlot",
+              "size": 1,
+              "alignment": null
+            }
+          ],
+          "element": {
+            "kind": "struct",
+            "name": "Particle",
+            "scalar": null,
+            "element_count": null,
+            "rows": null,
+            "columns": null,
+            "matrix_layout": null,
+            "sizes": [
+              {
+                "class": "uniform",
+                "size": 16,
+                "alignment": 8
+              }
+            ],
+            "element": null,
+            "fields": [
+              {
+                "name": "pos",
+                "offset": 0,
+                "size": 8,
+                "stride": 4,
+                "ty": {
+                  "kind": "vector",
+                  "name": null,
+                  "scalar": null,
+                  "element_count": 2,
+                  "rows": null,
+                  "columns": null,
+                  "matrix_layout": null,
+                  "sizes": [
+                    {
+                      "class": "uniform",
+                      "size": 8,
+                      "alignment": 8
+                    }
+                  ],
+                  "element": {
+                    "kind": "scalar",
+                    "name": null,
+                    "scalar": "float32",
+                    "element_count": null,
+                    "rows": null,
+                    "columns": null,
+                    "matrix_layout": null,
+                    "sizes": [],
+                    "element": null,
+                    "fields": []
+                  },
+                  "fields": []
+                }
+              },
+              {
+                "name": "vel",
+                "offset": 8,
+                "size": 8,
+                "stride": 4,
+                "ty": {
+                  "kind": "vector",
+                  "name": null,
+                  "scalar": null,
+                  "element_count": 2,
+                  "rows": null,
+                  "columns": null,
+                  "matrix_layout": null,
+                  "sizes": [
+                    {
+                      "class": "uniform",
+                      "size": 8,
+                      "alignment": 8
+                    }
+                  ],
+                  "element": {
+                    "kind": "scalar",
+                    "name": null,
+                    "scalar": "float32",
+                    "element_count": null,
+                    "rows": null,
+                    "columns": null,
+                    "matrix_layout": null,
+                    "sizes": [],
+                    "element": null,
+                    "fields": []
+                  },
+                  "fields": []
+                }
+              }
+            ]
+          },
+          "fields": []
+        }
+      },
+      {
+        "name": "wells",
+        "kind": "structuredBuffer",
+        "access": null,
+        "array_size": null,
+        "logical": {
+          "class": "descriptorTableSlot",
+          "space": null,
+          "index": 2
+        },
+        "physical": null,
+        "ty": {
+          "kind": "resource",
+          "name": null,
+          "scalar": null,
+          "element_count": null,
+          "rows": null,
+          "columns": null,
+          "matrix_layout": null,
+          "sizes": [
+            {
+              "class": "descriptorTableSlot",
+              "size": 1,
+              "alignment": null
+            }
+          ],
+          "element": {
+            "kind": "struct",
+            "name": "Well",
+            "scalar": null,
+            "element_count": null,
+            "rows": null,
+            "columns": null,
+            "matrix_layout": null,
+            "sizes": [
+              {
+                "class": "uniform",
+                "size": 16,
+                "alignment": 8
+              }
+            ],
+            "element": null,
+            "fields": [
+              {
+                "name": "pos",
+                "offset": 0,
+                "size": 8,
+                "stride": 4,
+                "ty": {
+                  "kind": "vector",
+                  "name": null,
+                  "scalar": null,
+                  "element_count": 2,
+                  "rows": null,
+                  "columns": null,
+                  "matrix_layout": null,
+                  "sizes": [
+                    {
+                      "class": "uniform",
+                      "size": 8,
+                      "alignment": 8
+                    }
+                  ],
+                  "element": {
+                    "kind": "scalar",
+                    "name": null,
+                    "scalar": "float32",
+                    "element_count": null,
+                    "rows": null,
+                    "columns": null,
+                    "matrix_layout": null,
+                    "sizes": [],
+                    "element": null,
+                    "fields": []
+                  },
+                  "fields": []
+                }
+              },
+              {
+                "name": "strength",
+                "offset": 8,
+                "size": 4,
+                "stride": 0,
+                "ty": {
+                  "kind": "scalar",
+                  "name": null,
+                  "scalar": "float32",
+                  "element_count": null,
+                  "rows": null,
+                  "columns": null,
+                  "matrix_layout": null,
+                  "sizes": [
+                    {
+                      "class": "uniform",
+                      "size": 4,
+                      "alignment": 4
+                    }
+                  ],
+                  "element": null,
+                  "fields": []
+                }
+              },
+              {
+                "name": "radius",
+                "offset": 12,
+                "size": 4,
+                "stride": 0,
+                "ty": {
+                  "kind": "scalar",
+                  "name": null,
+                  "scalar": "float32",
+                  "element_count": null,
+                  "rows": null,
+                  "columns": null,
+                  "matrix_layout": null,
+                  "sizes": [
+                    {
+                      "class": "uniform",
+                      "size": 4,
+                      "alignment": 4
+                    }
+                  ],
+                  "element": null,
+                  "fields": []
+                }
+              }
+            ]
+          },
+          "fields": []
+        }
+      }
+    ],
+    "blocks": [
+      {
+        "name": "pc",
+        "kind": "constantBuffer",
+        "access": null,
+        "array_size": null,
+        "logical": {
+          "class": "pushConstantBuffer",
+          "space": null,
+          "index": 0
+        },
+        "physical": null,
+        "ty": {
+          "kind": "constantBuffer",
+          "name": null,
+          "scalar": null,
+          "element_count": null,
+          "rows": null,
+          "columns": null,
+          "matrix_layout": null,
+          "sizes": [
+            {
+              "class": "pushConstantBuffer",
+              "size": 1,
+              "alignment": null
+            }
+          ],
+          "element": {
+            "kind": "struct",
+            "name": "SimPush",
+            "scalar": null,
+            "element_count": null,
+            "rows": null,
+            "columns": null,
+            "matrix_layout": null,
+            "sizes": [
+              {
+                "class": "uniform",
+                "size": 64,
+                "alignment": 4
+              }
+            ],
+            "element": null,
+            "fields": [
+              {
+                "name": "dt",
+                "offset": 0,
+                "size": 4,
+                "stride": 0,
+                "ty": {
+                  "kind": "scalar",
+                  "name": null,
+                  "scalar": "float32",
+                  "element_count": null,
+                  "rows": null,
+                  "columns": null,
+                  "matrix_layout": null,
+                  "sizes": [
+                    {
+                      "class": "uniform",
+                      "size": 4,
+                      "alignment": 4
+                    }
+                  ],
+                  "element": null,
+                  "fields": []
+                }
+              },
+              {
+                "name": "gravityStrength",
+                "offset": 4,
+                "size": 4,
+                "stride": 0,
+                "ty": {
+                  "kind": "scalar",
+                  "name": null,
+                  "scalar": "float32",
+                  "element_count": null,
+                  "rows": null,
+                  "columns": null,
+                  "matrix_layout": null,
+                  "sizes": [
+                    {
+                      "class": "uniform",
+                      "size": 4,
+                      "alignment": 4
+                    }
+                  ],
+                  "element": null,
+                  "fields": []
+                }
+              },
+              {
+                "name": "damping",
+                "offset": 8,
+                "size": 4,
+                "stride": 0,
+                "ty": {
+                  "kind": "scalar",
+                  "name": null,
+                  "scalar": "float32",
+                  "element_count": null,
+                  "rows": null,
+                  "columns": null,
+                  "matrix_layout": null,
+                  "sizes": [
+                    {
+                      "class": "uniform",
+                      "size": 4,
+                      "alignment": 4
+                    }
+                  ],
+                  "element": null,
+                  "fields": []
+                }
+              },
+              {
+                "name": "particleCount",
+                "offset": 12,
+                "size": 4,
+                "stride": 0,
+                "ty": {
+                  "kind": "scalar",
+                  "name": null,
+                  "scalar": "uint32",
+                  "element_count": null,
+                  "rows": null,
+                  "columns": null,
+                  "matrix_layout": null,
+                  "sizes": [
+                    {
+                      "class": "uniform",
+                      "size": 4,
+                      "alignment": 4
+                    }
+                  ],
+                  "element": null,
+                  "fields": []
+                }
+              },
+              {
+                "name": "wellCount",
+                "offset": 16,
+                "size": 4,
+                "stride": 0,
+                "ty": {
+                  "kind": "scalar",
+                  "name": null,
+                  "scalar": "uint32",
+                  "element_count": null,
+                  "rows": null,
+                  "columns": null,
+                  "matrix_layout": null,
+                  "sizes": [
+                    {
+                      "class": "uniform",
+                      "size": 4,
+                      "alignment": 4
+                    }
+                  ],
+                  "element": null,
+                  "fields": []
+                }
+              },
+              {
+                "name": "bass",
+                "offset": 20,
+                "size": 4,
+                "stride": 0,
+                "ty": {
+                  "kind": "scalar",
+                  "name": null,
+                  "scalar": "float32",
+                  "element_count": null,
+                  "rows": null,
+                  "columns": null,
+                  "matrix_layout": null,
+                  "sizes": [
+                    {
+                      "class": "uniform",
+                      "size": 4,
+                      "alignment": 4
+                    }
+                  ],
+                  "element": null,
+                  "fields": []
+                }
+              },
+              {
+                "name": "mid",
+                "offset": 24,
+                "size": 4,
+                "stride": 0,
+                "ty": {
+                  "kind": "scalar",
+                  "name": null,
+                  "scalar": "float32",
+                  "element_count": null,
+                  "rows": null,
+                  "columns": null,
+                  "matrix_layout": null,
+                  "sizes": [
+                    {
+                      "class": "uniform",
+                      "size": 4,
+                      "alignment": 4
+                    }
+                  ],
+                  "element": null,
+                  "fields": []
+                }
+              },
+              {
+                "name": "treble",
+                "offset": 28,
+                "size": 4,
+                "stride": 0,
+                "ty": {
+                  "kind": "scalar",
+                  "name": null,
+                  "scalar": "float32",
+                  "element_count": null,
+                  "rows": null,
+                  "columns": null,
+                  "matrix_layout": null,
+                  "sizes": [
+                    {
+                      "class": "uniform",
+                      "size": 4,
+                      "alignment": 4
+                    }
+                  ],
+                  "element": null,
+                  "fields": []
+                }
+              },
+              {
+                "name": "boidSeparation",
+                "offset": 32,
+                "size": 4,
+                "stride": 0,
+                "ty": {
+                  "kind": "scalar",
+                  "name": null,
+                  "scalar": "float32",
+                  "element_count": null,
+                  "rows": null,
+                  "columns": null,
+                  "matrix_layout": null,
+                  "sizes": [
+                    {
+                      "class": "uniform",
+                      "size": 4,
+                      "alignment": 4
+                    }
+                  ],
+                  "element": null,
+                  "fields": []
+                }
+              },
+              {
+                "name": "boidAlignment",
+                "offset": 36,
+                "size": 4,
+                "stride": 0,
+                "ty": {
+                  "kind": "scalar",
+                  "name": null,
+                  "scalar": "float32",
+                  "element_count": null,
+                  "rows": null,
+                  "columns": null,
+                  "matrix_layout": null,
+                  "sizes": [
+                    {
+                      "class": "uniform",
+                      "size": 4,
+                      "alignment": 4
+                    }
+                  ],
+                  "element": null,
+                  "fields": []
+                }
+              },
+              {
+                "name": "boidCohesion",
+                "offset": 40,
+                "size": 4,
+                "stride": 0,
+                "ty": {
+                  "kind": "scalar",
+                  "name": null,
+                  "scalar": "float32",
+                  "element_count": null,
+                  "rows": null,
+                  "columns": null,
+                  "matrix_layout": null,
+                  "sizes": [
+                    {
+                      "class": "uniform",
+                      "size": 4,
+                      "alignment": 4
+                    }
+                  ],
+                  "element": null,
+                  "fields": []
+                }
+              },
+              {
+                "name": "boidRadius",
+                "offset": 44,
+                "size": 4,
+                "stride": 0,
+                "ty": {
+                  "kind": "scalar",
+                  "name": null,
+                  "scalar": "float32",
+                  "element_count": null,
+                  "rows": null,
+                  "columns": null,
+                  "matrix_layout": null,
+                  "sizes": [
+                    {
+                      "class": "uniform",
+                      "size": 4,
+                      "alignment": 4
+                    }
+                  ],
+                  "element": null,
+                  "fields": []
+                }
+              },
+              {
+                "name": "maxSpeed",
+                "offset": 48,
+                "size": 4,
+                "stride": 0,
+                "ty": {
+                  "kind": "scalar",
+                  "name": null,
+                  "scalar": "float32",
+                  "element_count": null,
+                  "rows": null,
+                  "columns": null,
+                  "matrix_layout": null,
+                  "sizes": [
+                    {
+                      "class": "uniform",
+                      "size": 4,
+                      "alignment": 4
+                    }
+                  ],
+                  "element": null,
+                  "fields": []
+                }
+              },
+              {
+                "name": "time",
+                "offset": 52,
+                "size": 4,
+                "stride": 0,
+                "ty": {
+                  "kind": "scalar",
+                  "name": null,
+                  "scalar": "float32",
+                  "element_count": null,
+                  "rows": null,
+                  "columns": null,
+                  "matrix_layout": null,
+                  "sizes": [
+                    {
+                      "class": "uniform",
+                      "size": 4,
+                      "alignment": 4
+                    }
+                  ],
+                  "element": null,
+                  "fields": []
+                }
+              },
+              {
+                "name": "gridDim",
+                "offset": 56,
+                "size": 4,
+                "stride": 0,
+                "ty": {
+                  "kind": "scalar",
+                  "name": null,
+                  "scalar": "float32",
+                  "element_count": null,
+                  "rows": null,
+                  "columns": null,
+                  "matrix_layout": null,
+                  "sizes": [
+                    {
+                      "class": "uniform",
+                      "size": 4,
+                      "alignment": 4
+                    }
+                  ],
+                  "element": null,
+                  "fields": []
+                }
+              },
+              {
+                "name": "boxHalf",
+                "offset": 60,
+                "size": 4,
+                "stride": 0,
+                "ty": {
+                  "kind": "scalar",
+                  "name": null,
+                  "scalar": "float32",
+                  "element_count": null,
+                  "rows": null,
+                  "columns": null,
+                  "matrix_layout": null,
+                  "sizes": [
+                    {
+                      "class": "uniform",
+                      "size": 4,
+                      "alignment": 4
+                    }
+                  ],
+                  "element": null,
+                  "fields": []
+                }
+              }
+            ]
+          },
+          "fields": []
+        }
+      }
+    ],
+    "specialization_constants": [],
+    "remaps": [],
+    "capability_report": []
+  }
+}

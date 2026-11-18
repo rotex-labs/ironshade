@@ -1,0 +1,27 @@
+[slang]
+version = "2026.21"
+commit = "e73d268973dae1a2af701277b27c2fddef98a274"
+
+[slang.linux]
+url = "https://github.com/shader-slang/slang/releases/download/v2026.21/slang-2026.21-linux-x86_64.tar.gz"
+sha256 = "691f9341e5bec099eec97ee30a83bcbef541cee7fe3b4de68a821d42f9506c2f"
+
+[slang.windows]
+url = "https://github.com/shader-slang/slang/releases/download/v2026.21/slang-2026.21-windows-x86_64.zip"
+sha256 = "4b6f509e73397175ed36a341beb7ad15f4fff5feaf5f6d95fecf896c0d86b8de"
+
+[validators]
+naga = "30.0.1"
+spirv_tools = "ef96ed763b43b59b33b31b362f09a02b729fa1c9"
+spirv_headers = "496543121ce6419f23d6fa5d7194ba66c36212d2"
+glslang = "b5782e52ee2f7b3e40bb9c80d15b47016e008bc9"
+
+[[licenses]]
+path = "LICENSE"
+spdx = "Apache-2.0 WITH LLVM-exception"
+sha256 = "b738d98b7725414b534c119ac66126876b8cbd40aa8ae48210db190714b81670"
+
+[[licenses]]
+path = "tests/fcpw/LICENSE"
+spdx = "MIT"
+sha256 = "a8dc09fce75a093e0d4df4b62ac4af552641b2e177f02c54f2ba8bd7a54830d6"

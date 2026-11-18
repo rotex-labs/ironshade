@@ -83,3 +83,44 @@ jobs:
           toolchain: "1.90.0"
       - name: Check Rust 1.90.0
         run: cargo +1.90.0 check --locked --workspace --all-targets --all-features
+
+  difftest-linux:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: "1.99.1"
+      - uses: Swatinem/rust-cache@v2
+      - uses: actions/cache@v4
+        with:
+          path: target/ironshade-oracles
+          key: m0-oracles-ubuntu24-${{ runner.arch }}-${{ hashFiles('conformance/manifest.toml', 'rust-toolchain.toml', 'xtask/src/oracles.rs') }}
+
+      - name: Initialize the pinned Slang test suite
+        run: git submodule update --init --depth 1 conformance/slang-tests
+
+      - name: Classify and audit the test suite
+        run: cargo xtask conformance --dry-run
+
+      - name: Provision the pinned oracle and validators
+        run: cargo xtask fetch-oracles
+
+      - name: Verify Nova reflection snapshots
+        run: cargo xtask difftest --oracle-only tests/fixtures/rotex
+
+      - name: Upload the Slang compiler test inventory
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: slang-test-inventory
+          path: target/ironshade-conformance/
+
+      - name: Upload raw Nova oracle evidence on failure
+        if: ${{ failure() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: nova-oracle-evidence
+          path: target/ironshade-difftest/
+          include-hidden-files: true

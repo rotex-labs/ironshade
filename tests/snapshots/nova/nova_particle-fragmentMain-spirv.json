@@ -1,0 +1,440 @@
+{
+  "slangc_version": "2026.21",
+  "source": "nova_particle.slang",
+  "entry": "fragmentMain",
+  "target": "spirv",
+  "flags": [
+    "-matrix-layout-column-major",
+    "-fvk-use-entrypoint-name",
+    "-fvk-use-gl-layout",
+    "-O2",
+    "-profile",
+    "spirv_1_0"
+  ],
+  "spirv_version": "1.0",
+  "wgsl_uses_immediates": null,
+  "validation": {
+    "tool": "spirv-val",
+    "accepted": true
+  },
+  "reflection": {
+    "schema_version": 0,
+    "entry_points": [
+      {
+        "name": "fragmentMain",
+        "stage": "fragment",
+        "workgroup_size": null,
+        "inputs": [
+          {
+            "name": "color",
+            "location": 0,
+            "semantic": "TEXCOORD",
+            "semantic_index": 2,
+            "builtin": null,
+            "interpolation": null,
+            "ty": {
+              "kind": "vector",
+              "name": null,
+              "scalar": null,
+              "element_count": 4,
+              "rows": null,
+              "columns": null,
+              "matrix_layout": null,
+              "sizes": [
+                {
+                  "class": "varyingInput",
+                  "size": 1,
+                  "alignment": null
+                }
+              ],
+              "element": {
+                "kind": "scalar",
+                "name": null,
+                "scalar": "float32",
+                "element_count": null,
+                "rows": null,
+                "columns": null,
+                "matrix_layout": null,
+                "sizes": [],
+                "element": null,
+                "fields": []
+              },
+              "fields": []
+            }
+          },
+          {
+            "name": "coord",
+            "location": null,
+            "semantic": "SV_POINTCOORD",
+            "semantic_index": null,
+            "builtin": "point_coord",
+            "interpolation": null,
+            "ty": {
+              "kind": "vector",
+              "name": null,
+              "scalar": null,
+              "element_count": 2,
+              "rows": null,
+              "columns": null,
+              "matrix_layout": null,
+              "sizes": [],
+              "element": {
+                "kind": "scalar",
+                "name": null,
+                "scalar": "float32",
+                "element_count": null,
+                "rows": null,
+                "columns": null,
+                "matrix_layout": null,
+                "sizes": [],
+                "element": null,
+                "fields": []
+              },
+              "fields": []
+            }
+          }
+        ],
+        "outputs": [
+          {
+            "name": "result",
+            "location": 0,
+            "semantic": "SV_TARGET",
+            "semantic_index": null,
+            "builtin": null,
+            "interpolation": null,
+            "ty": {
+              "kind": "vector",
+              "name": null,
+              "scalar": null,
+              "element_count": 4,
+              "rows": null,
+              "columns": null,
+              "matrix_layout": null,
+              "sizes": [
+                {
+                  "class": "varyingOutput",
+                  "size": 1,
+                  "alignment": null
+                }
+              ],
+              "element": {
+                "kind": "scalar",
+                "name": null,
+                "scalar": "float32",
+                "element_count": null,
+                "rows": null,
+                "columns": null,
+                "matrix_layout": null,
+                "sizes": [],
+                "element": null,
+                "fields": []
+              },
+              "fields": []
+            }
+          }
+        ],
+        "live_bindings": [
+          {
+            "name": "pc",
+            "used": null
+          }
+        ]
+      }
+    ],
+    "declared_bindings": [
+      {
+        "name": "pc",
+        "kind": "constantBuffer",
+        "access": null,
+        "array_size": null,
+        "logical": {
+          "class": "pushConstantBuffer",
+          "space": null,
+          "index": 0
+        },
+        "physical": null,
+        "ty": {
+          "kind": "constantBuffer",
+          "name": null,
+          "scalar": null,
+          "element_count": null,
+          "rows": null,
+          "columns": null,
+          "matrix_layout": null,
+          "sizes": [
+            {
+              "class": "pushConstantBuffer",
+              "size": 1,
+              "alignment": null
+            }
+          ],
+          "element": {
+            "kind": "struct",
+            "name": "PointPush",
+            "scalar": null,
+            "element_count": null,
+            "rows": null,
+            "columns": null,
+            "matrix_layout": null,
+            "sizes": [
+              {
+                "class": "uniform",
+                "size": 16,
+                "alignment": 4
+              }
+            ],
+            "element": null,
+            "fields": [
+              {
+                "name": "aspect",
+                "offset": 0,
+                "size": 4,
+                "stride": 0,
+                "ty": {
+                  "kind": "scalar",
+                  "name": null,
+                  "scalar": "float32",
+                  "element_count": null,
+                  "rows": null,
+                  "columns": null,
+                  "matrix_layout": null,
+                  "sizes": [
+                    {
+                      "class": "uniform",
+                      "size": 4,
+                      "alignment": 4
+                    }
+                  ],
+                  "element": null,
+                  "fields": []
+                }
+              },
+              {
+                "name": "pointSize",
+                "offset": 4,
+                "size": 4,
+                "stride": 0,
+                "ty": {
+                  "kind": "scalar",
+                  "name": null,
+                  "scalar": "float32",
+                  "element_count": null,
+                  "rows": null,
+                  "columns": null,
+                  "matrix_layout": null,
+                  "sizes": [
+                    {
+                      "class": "uniform",
+                      "size": 4,
+                      "alignment": 4
+                    }
+                  ],
+                  "element": null,
+                  "fields": []
+                }
+              },
+              {
+                "name": "brightness",
+                "offset": 8,
+                "size": 4,
+                "stride": 0,
+                "ty": {
+                  "kind": "scalar",
+                  "name": null,
+                  "scalar": "float32",
+                  "element_count": null,
+                  "rows": null,
+                  "columns": null,
+                  "matrix_layout": null,
+                  "sizes": [
+                    {
+                      "class": "uniform",
+                      "size": 4,
+                      "alignment": 4
+                    }
+                  ],
+                  "element": null,
+                  "fields": []
+                }
+              },
+              {
+                "name": "pad",
+                "offset": 12,
+                "size": 4,
+                "stride": 0,
+                "ty": {
+                  "kind": "scalar",
+                  "name": null,
+                  "scalar": "float32",
+                  "element_count": null,
+                  "rows": null,
+                  "columns": null,
+                  "matrix_layout": null,
+                  "sizes": [
+                    {
+                      "class": "uniform",
+                      "size": 4,
+                      "alignment": 4
+                    }
+                  ],
+                  "element": null,
+                  "fields": []
+                }
+              }
+            ]
+          },
+          "fields": []
+        }
+      }
+    ],
+    "blocks": [
+      {
+        "name": "pc",
+        "kind": "constantBuffer",
+        "access": null,
+        "array_size": null,
+        "logical": {
+          "class": "pushConstantBuffer",
+          "space": null,
+          "index": 0
+        },
+        "physical": null,
+        "ty": {
+          "kind": "constantBuffer",
+          "name": null,
+          "scalar": null,
+          "element_count": null,
+          "rows": null,
+          "columns": null,
+          "matrix_layout": null,
+          "sizes": [
+            {
+              "class": "pushConstantBuffer",
+              "size": 1,
+              "alignment": null
+            }
+          ],
+          "element": {
+            "kind": "struct",
+            "name": "PointPush",
+            "scalar": null,
+            "element_count": null,
+            "rows": null,
+            "columns": null,
+            "matrix_layout": null,
+            "sizes": [
+              {
+                "class": "uniform",
+                "size": 16,
+                "alignment": 4
+              }
+            ],
+            "element": null,
+            "fields": [
+              {
+                "name": "aspect",
+                "offset": 0,
+                "size": 4,
+                "stride": 0,
+                "ty": {
+                  "kind": "scalar",
+                  "name": null,
+                  "scalar": "float32",
+                  "element_count": null,
+                  "rows": null,
+                  "columns": null,
+                  "matrix_layout": null,
+                  "sizes": [
+                    {
+                      "class": "uniform",
+                      "size": 4,
+                      "alignment": 4
+                    }
+                  ],
+                  "element": null,
+                  "fields": []
+                }
+              },
+              {
+                "name": "pointSize",
+                "offset": 4,
+                "size": 4,
+                "stride": 0,
+                "ty": {
+                  "kind": "scalar",
+                  "name": null,
+                  "scalar": "float32",
+                  "element_count": null,
+                  "rows": null,
+                  "columns": null,
+                  "matrix_layout": null,
+                  "sizes": [
+                    {
+                      "class": "uniform",
+                      "size": 4,
+                      "alignment": 4
+                    }
+                  ],
+                  "element": null,
+                  "fields": []
+                }
+              },
+              {
+                "name": "brightness",
+                "offset": 8,
+                "size": 4,
+                "stride": 0,
+                "ty": {
+                  "kind": "scalar",
+                  "name": null,
+                  "scalar": "float32",
+                  "element_count": null,
+                  "rows": null,
+                  "columns": null,
+                  "matrix_layout": null,
+                  "sizes": [
+                    {
+                      "class": "uniform",
+                      "size": 4,
+                      "alignment": 4
+                    }
+                  ],
+                  "element": null,
+                  "fields": []
+                }
+              },
+              {
+                "name": "pad",
+                "offset": 12,
+                "size": 4,
+                "stride": 0,
+                "ty": {
+                  "kind": "scalar",
+                  "name": null,
+                  "scalar": "float32",
+                  "element_count": null,
+                  "rows": null,
+                  "columns": null,
+                  "matrix_layout": null,
+                  "sizes": [
+                    {
+                      "class": "uniform",
+                      "size": 4,
+                      "alignment": 4
+                    }
+                  ],
+                  "element": null,
+                  "fields": []
+                }
+              }
+            ]
+          },
+          "fields": []
+        }
+      }
+    ],
+    "specialization_constants": [],
+    "remaps": [],
+    "capability_report": []
+  }
+}

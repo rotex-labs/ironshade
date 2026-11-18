@@ -1,11 +1,14 @@
 # ABI and reflection
 
-`ironshade-abi` will map logical resources to physical bindings and layouts for
-the selected target. `ironshade-artifact` will preserve both mappings and record
-layouts, offsets, strides, entry points, and capability requirements. Declared
-and live bindings have separate reflection records.
+`ironshade-artifact` defines schema v0 for versioned JSON reflection and shader
+artifacts. It records entry points, stage interfaces, declared and live
+bindings, layout measurements, remaps, target identity, and capability reports.
+Measurements that the producer does not supply remain unknown.
+
+The Nova snapshots exercise the schema using slangc reflection. Ironshade's
+layout planner and target-specific layout probes are part of later milestones.
 
 See the [ABI and reflection design](IRONSHADE_ARCHITECTURE.md#8-abi-and-reflection)
-for the planned layouts and schema.
+for the planned layout rules.
 
 Slang™ and the Slang logo are trademarks of the Khronos Group Inc.

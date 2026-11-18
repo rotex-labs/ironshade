@@ -1,0 +1,3 @@
+[submodule "conformance/slang-tests"]
+	path = conformance/slang-tests
+	url = https://github.com/shader-slang/slang.git

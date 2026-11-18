@@ -10,3 +10,11 @@ publish.workspace = true
 
 [features]
 testkit = []
+
+[dependencies]
+ironshade-artifact.workspace = true
+ironshade-base.workspace = true
+ironshade-caps.workspace = true
+ironshade-ir.workspace = true
+ironshade-passes.workspace = true
+serde.workspace = true

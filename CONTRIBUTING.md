@@ -33,6 +33,23 @@ cargo build --locked --target wasm32-unknown-unknown -p ironshade --no-default-f
 cargo build --locked --target wasm32-unknown-unknown -p ironshade-runtime
 ```
 
+## Oracle checks
+
+Run the Nova baseline on Linux x86-64 with Git, curl, tar, CMake, Ninja, Python 3,
+and a C++ toolchain available. The first run provisions pinned tools in
+`target/ironshade-oracles/`.
+
+```sh
+git submodule update --init --depth 1 conformance/slang-tests
+cargo xtask conformance --dry-run
+cargo xtask fetch-oracles
+cargo xtask difftest --oracle-only tests/fixtures/rotex
+```
+
+Use `--update` on the difftest command for deliberate snapshot revisions. Review
+the normalized JSON and the raw evidence before accepting a change. For the
+baseline format and validator results, see [Differential testing](docs/difftest.md).
+
 ## Branches and releases
 
 Open feature pull requests against `main`. Use conventional commits for

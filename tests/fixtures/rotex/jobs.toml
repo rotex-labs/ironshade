@@ -1,0 +1,20 @@
+# Stage is also the prefix of each Rotex entry point name.
+[[shader]]
+file = "nova_gravity.slang"
+stages = ["compute"]
+
+[[shader]]
+file = "nova_particle.slang"
+stages = ["vertex", "fragment"]
+
+[[shader]]
+file = "nova_persist.slang"
+stages = ["vertex", "fragment"]
+
+[[shader]]
+file = "nova_composite.slang"
+stages = ["vertex", "fragment"]
+
+[[shader]]
+file = "nova_live.slang"
+stages = ["vertex", "fragment"]
