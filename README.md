@@ -1,18 +1,24 @@
+<!-- Banners are in-repo under docs/brand until rotex-assets has a tag.
+     They can later be pinned to
+     https://raw.githubusercontent.com/rotex-labs/rotex-assets/<tag>/brand/ironshade/github/ironshade-readme-banner-{dark,light}.svg -->
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="docs/brand/ironshade-dark.svg">
-    <img alt="Ironshade" src="docs/brand/ironshade-light.svg" width="1200">
+    <source media="(prefers-color-scheme: dark)" srcset="docs/brand/ironshade-readme-banner-dark.svg">
+    <source media="(prefers-color-scheme: light)" srcset="docs/brand/ironshade-readme-banner-light.svg">
+    <img alt="Ironshade: One shader source. Every target. Checked." src="docs/brand/ironshade-readme-banner-light.svg" width="1200">
   </picture>
 </p>
 
-# Ironshade
+# ironshade
 
-Ironshade is a pure-Rust shader compiler that aims to compile the Slang™ shading
-language to SPIR-V, WGSL, GLSL ES, HLSL and legacy Direct3D bytecode.
+A pure-Rust shader compiler for Rotex Engine. It aims to compile the Slang™ shading
+language to SPIR-V, WGSL, GLSL ES, HLSL and legacy Direct3D bytecode through a
+pluggable backend HAL.
 
-> [!NOTE]
-> **Early development.** M0 establishes the compiler contracts and shader
-> oracle harness. Ironshade shader emission starts in M1.
+> [!WARNING]
+> **Early development, pre-1.0.** M0 establishes the compiler contracts and the shader
+> oracle harness. Shader emission starts in M1 (SPIR-V and WGSL). APIs, crate
+> boundaries and the artifact format can change in any 0.x release.
 
 ## Overview
 
@@ -31,18 +37,18 @@ points, bindings, layouts, and remaps for the host application.
 Ironshade is developed in the Rotex ecosystem and builds as a standalone Cargo
 workspace.
 
-## Key crates
+## Crates
 
-| Crate | Role |
-| --- | --- |
-| [`ironshade`](crates/ironshade) | Umbrella library and `ironshadec` CLI |
-| [`ironshade-ir`](crates/ironshade-ir) | Shared representation for text and graph input |
-| [`ironshade-caps`](crates/ironshade-caps) | Capability vocabulary and legalization planning |
-| [`ironshade-target`](crates/ironshade-target) | Public backend HAL |
-| [`ironshade-artifact`](crates/ironshade-artifact) | Versioned reflection and artifact format |
-| [`ironshade-runtime`](crates/ironshade-runtime) | Planned live compilation service |
+| Package | Description | Version |
+|---------|-------------|---------|
+| [`ironshade`](crates/ironshade) | Umbrella library and `ironshadec` CLI | 0.1.0 |
+| [`ironshade-ir`](crates/ironshade-ir) | Shared representation for text and graph input | 0.1.0 |
+| [`ironshade-caps`](crates/ironshade-caps) | Capability vocabulary and legalization planning | 0.1.0 |
+| [`ironshade-target`](crates/ironshade-target) | Public backend HAL | 0.1.0 |
+| [`ironshade-artifact`](crates/ironshade-artifact) | Versioned reflection and artifact format | 0.1.0 |
+| [`ironshade-runtime`](crates/ironshade-runtime) | Planned live compilation service | 0.1.0 |
 
-## Target roadmap
+## Targets
 
 | Output | Environment | Planned milestone |
 | --- | --- | --- |
@@ -73,8 +79,11 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for the local checks and
 
 ## License
 
-Licensed under either the [Apache License, Version 2.0](LICENSE-APACHE) or
-the [MIT license](LICENSE-MIT), at your option. See [NOTICE](NOTICE) for
-third-party attributions.
+Licensed under either of
 
-Slang™ and the Slang logo are trademarks of the Khronos Group Inc.
+* Apache License, Version 2.0 ([LICENSE-APACHE](LICENSE-APACHE))
+* MIT license ([LICENSE-MIT](LICENSE-MIT))
+
+at your option. See [NOTICE](NOTICE) for third-party attributions.
+
+<sub>Part of <a href="https://github.com/rotex-labs">Rotex Engine</a> · Brand assets: <a href="https://github.com/rotex-labs/rotex-assets">rotex-assets</a> · Slang™ and the Slang logo are trademarks of the Khronos Group Inc. Ironshade is not affiliated with or endorsed by the Khronos Group.</sub>
